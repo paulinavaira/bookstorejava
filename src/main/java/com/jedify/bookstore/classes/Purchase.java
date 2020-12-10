@@ -1,4 +1,4 @@
-package com.jedify.bookstore;
+package com.jedify.bookstore.classes;
 
 import javax.persistence.*;
 import java.util.HashMap;

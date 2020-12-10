@@ -1,11 +1,11 @@
 package com.jedify.bookstore;
 
+import com.jedify.bookstore.classes.*;
+import com.jedify.bookstore.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import javax.persistence.PreUpdate;
 
 @SpringBootApplication
 public class Main {
@@ -29,18 +29,18 @@ public class Main {
             Author isaac_asimov = new Author("Isaac", "Asimov", Nationality.RU);
 
             // Books
-            Book crimen_y_castigo = new Book("Crimen y Castigo", fiodor_dostoievsky, Category.literaturaUniversal);
-            Book los_hermanos_karamazov = new Book("Los Hermanos Karamazov", fiodor_dostoievsky, Category.literaturaUniversal);
-            Book ana_karenina = new Book("Ana Karenina", leon_tolstoi, Category.literaturaUniversal);
-            Book por_quien_doblan_las_campanas = new Book("Por quién doblan las campanas", ernest_hemingway, Category.literaturaUniversal);
-            Book la_casa_de_los_espiritus = new Book("La casa de los espíritus", isabel_allende, Category.literaturaLatinoamericana);
-            Book cien_anos_de_soledad = new Book("Cien años de soledad", gabriel_garcia_marquez, Category.literaturaLatinoamericana);
-            Book el_aleph = new Book("El Aleph", jorge_luis_borges, Category.literaturaArgentina);
-            Book ficciones = new Book("Ficciones", jorge_luis_borges, Category.literaturaArgentina);
-            Book la_comunidad_del_anillo = new Book("La comunidad del Anillo", j_r_r_tolkien, Category.literaturaFantastica);
-            Book las_dos_torres = new Book("Las dos torres", j_r_r_tolkien, Category.literaturaFantastica);
-            Book el_retorno_del_rey = new Book("El retorno del rey", j_r_r_tolkien, Category.literaturaFantastica);
-            Book yo_robot = new Book("Yo robot", isaac_asimov, Category.cienciaFiccion);
+            Book crimen_y_castigo = new Book("Crimen y Castigo", fiodor_dostoievsky, Category.literatura_universal);
+            Book los_hermanos_karamazov = new Book("Los Hermanos Karamazov", fiodor_dostoievsky, Category.literatura_universal);
+            Book ana_karenina = new Book("Ana Karenina", leon_tolstoi, Category.literatura_universal);
+            Book por_quien_doblan_las_campanas = new Book("Por quién doblan las campanas", ernest_hemingway, Category.literatura_universal);
+            Book la_casa_de_los_espiritus = new Book("La casa de los espíritus", isabel_allende, Category.literatura_latinoamericana);
+            Book cien_anos_de_soledad = new Book("Cien años de soledad", gabriel_garcia_marquez, Category.literatura_latinoamericana);
+            Book el_aleph = new Book("El Aleph", jorge_luis_borges, Category.literatura_argentina);
+            Book ficciones = new Book("Ficciones", jorge_luis_borges, Category.literatura_argentina);
+            Book la_comunidad_del_anillo = new Book("La comunidad del Anillo", j_r_r_tolkien, Category.literatura_fantastica);
+            Book las_dos_torres = new Book("Las dos torres", j_r_r_tolkien, Category.literatura_fantastica);
+            Book el_retorno_del_rey = new Book("El retorno del rey", j_r_r_tolkien, Category.literatura_fantastica);
+            Book yo_robot = new Book("Yo robot", isaac_asimov, Category.ciencia_ficcion);
 
             // Customers
             Customer prueba1 = new Customer("prueba1@gmail.com", "123456");

@@ -1,4 +1,4 @@
-package com.jedify.bookstore;
+package com.jedify.bookstore.classes;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -60,6 +60,7 @@ public class StoreBook {
     public static Map<String,Object> storeBookDTO(StoreBook storeBook){
         Map<String,Object> dto = new HashMap<>();
         dto.put("book", storeBook.getBook());
+        dto.put("stock", storeBook.getStock());
         return dto;
     }
 }

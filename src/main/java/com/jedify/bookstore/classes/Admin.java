@@ -1,9 +1,9 @@
-package com.jedify.bookstore;
+package com.jedify.bookstore.classes;
 
 import javax.persistence.*;
 
 @Entity
-public class Admin extends User{
+public class Admin extends User {
 
     @ManyToOne
     @JoinColumn(name = "store_id")

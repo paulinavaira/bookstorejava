@@ -1,4 +1,4 @@
-package com.jedify.bookstore;
+package com.jedify.bookstore.classes;
 
 import javax.persistence.*;
 import java.util.*;
@@ -10,7 +10,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
-    @OneToOne
+    @ManyToOne
     private Author author;
     @Enumerated(EnumType.STRING)
     private Category category;

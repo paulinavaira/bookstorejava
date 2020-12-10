@@ -1,5 +1,7 @@
-package com.jedify.bookstore;
+package com.jedify.bookstore.controllers;
 
+import com.jedify.bookstore.classes.*;
+import com.jedify.bookstore.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.HttpStatus;
 //import org.springframework.http.ResponseEntity;
@@ -10,11 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-//@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RestController
 @RequestMapping("/api")
 public class AppController {
 
+    @Autowired
+    AuthorRepository authorRepository;
     @Autowired
     BookRepository bookRepository;
     @Autowired
@@ -31,6 +35,11 @@ public class AppController {
 //    PasswordEncoder passwordEncoder;
 
     // G E T
+
+    @GetMapping("/authors")
+    public List<Map<String,Object>> getAuthors(){
+        return authorRepository.findAll().stream().map(Author::authorDTO).collect(Collectors.toList());
+    }
 
     @GetMapping("/books")
     public List<Map<String,Object>> getBooks(){
@@ -72,6 +81,12 @@ public class AppController {
                 .map(Purchase::purchaseDTO).collect(Collectors.toList());
     }
 
+    @GetMapping("/authors/{authorId}/books")
+    public List<Map<String,Object>> getBooksOnAuthorByAuthorId(@PathVariable long authorId){
+        return bookRepository.findAll().stream().filter(anAuthor -> (anAuthor.getAuthor().getId())==authorId)
+                .map(Book::bookDTO).collect(Collectors.toList());
+    }
+
     @GetMapping("/stores/{storeId}/books/{storeBooksId}")
     public List<Map<String,Object>> getOneBookOnStoreByBookId(@PathVariable long storeId, @PathVariable long storeBooksId){
         return storeBookRepository.findAll().stream().filter(aStore -> (aStore.getStore().getId())==storeId).filter(aBook -> (aBook.getBook().getId())==storeBooksId)
@@ -80,14 +95,37 @@ public class AppController {
 
     // P O S T (falta)
 
-    @PostMapping("/books")
-    public void addBook(@RequestBody Book book){
-        bookRepository.save(book);
+    @PostMapping("/authors")
+    public void addAuthor(@RequestBody Author author){
+        authorRepository.save(author);
     }
 
     @PostMapping("/stores")
     public void addStore(@RequestBody Store store){
         storeRepository.save(store);
+    }
+
+    @PostMapping("/customers")
+    public void addCustomer(@RequestBody Customer customer){
+        customerRepository.save(customer);
+    }
+
+    @PostMapping("/authors/{authorId}/books")
+    public void addBookInAuthor(@PathVariable Author authorId ,@RequestBody Book book) {
+        Book prueba_1 = new Book(book.getTitle(), authorId, book.getCategory());
+        bookRepository.save(prueba_1);
+    }
+
+    @PostMapping("/customers/{customerId}/books")
+    public void addBookInCustomer(@PathVariable Customer customerId ,@RequestBody Book book) {
+        Purchase prueba_1 = new Purchase(customerId);
+        purchaseRepository.save(prueba_1);
+    }
+
+    @PostMapping("/stores/{storeId}/books/{bookId}")
+    public void addBookInCustomer(@PathVariable Store storeId , @PathVariable Book bookId) {
+        StoreBook prueba_2 = new StoreBook(storeId, bookId, 5);
+        storeBookRepository.save(prueba_2);
     }
 
     // P A T C H (falta)

@@ -1,6 +1,8 @@
-package com.jedify.bookstore;
+package com.jedify.bookstore.classes;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class Author {
@@ -56,5 +58,13 @@ public class Author {
     public String fullName() {
         return this.getFirstName() + "" + this.getLastName();
     }
-    // fullName()
+
+    public static Map<String,Object> authorDTO(Author author) {
+        Map<String, Object> dto = new HashMap<>();
+        dto.put("id", author.getId());
+        dto.put("firstName", author.getFirstName());
+        dto.put("lastName", author.getLastName());
+        dto.put("nationality", author.getNationality());
+        return dto;
+    }
 }
